@@ -10,21 +10,16 @@ pipeline {
                 sh 'printenv'
                 sh 'git --version'
                 sh 'java -version'
-//                sh 'docker --version'
+                sh 'docker --version'
 //                sh 'mvn -version'
             }
 
         }
         stage('编译') {
-            agent {
-                docker {
-                    image 'maven:3-alpine'
-                }
-            }
+
             steps {
                 echo '编译'
                 sh ' pwd & ls -alh'
-                sh 'mvn -version'
 
             }
 
