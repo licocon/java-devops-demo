@@ -20,10 +20,6 @@ pipeline {
                 echo '编译'
                 sh ' pwd & ls -alh'
                 sh 'printenv'
-                sh 'git --version'
-                sh 'java -version'
-                sh 'mvn -version'
-                sh 'docker --version'
             }
 
         }
