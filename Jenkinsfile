@@ -13,7 +13,8 @@ pipeline {
                 docker 'openjdk:8-jre'
             }
             steps {
-                echo 'Hello, JDK' sh 'java -version'
+                echo 'Hello, JDK'
+                sh 'java -version'
             }
         }
     }
