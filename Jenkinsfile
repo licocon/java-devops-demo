@@ -8,6 +8,7 @@ pipeline {
             steps {
                 echo '编译'
                 sh ' pwd & ls -alh'
+                sh 'printenv'
             }
 
         }
