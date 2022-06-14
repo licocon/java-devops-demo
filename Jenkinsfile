@@ -1,7 +1,12 @@
 //file:noinspection GrUnresolvedAccess
 pipeline {
 
-    agent any
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
     stages {
 
         stage('环境检查') {
@@ -10,17 +15,19 @@ pipeline {
                 sh 'printenv'
                 sh 'git --version'
                 sh 'java -version'
-                sh 'docker --version'
+//                sh 'docker --version'
 //                sh 'mvn -version'
             }
 
         }
         stage('编译') {
 
-            agent {
-                docker 'maven:3-alpine'
-                args '-v /var/jenkins_home/maven/.m2:/root/.m2'
-            } steps { echo 'Hello, Maven' sh 'mvn --version' }
+            steps {
+                echo '编译'
+                sh ' pwd & ls -alh'
+                sh 'mvn -version'
+
+            }
 
         }
 
