@@ -4,6 +4,17 @@ pipeline {
     agent any
     stages {
 
+        stage('环境检查') {
+            steps {
+
+                sh 'printenv'
+                sh 'git --version'
+                sh 'java -version'
+                sh 'docker --version'
+                sh 'mvn -version'
+            }
+
+        }
         stage('编译') {
             steps {
                 echo '编译'
@@ -12,6 +23,7 @@ pipeline {
                 sh 'git --version'
                 sh 'java -version'
                 sh 'mvn -version'
+                sh 'docker --version'
             }
 
         }
