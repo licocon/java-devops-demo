@@ -1,7 +1,13 @@
 //file:noinspection GrUnresolvedAccess
 //file:noinspection SpellCheckingInspection
 pipeline {
-    agent none
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            //args 是指定 docker run 的所有指令
+            args '-v /var/jenkins_home/maven/.m2:/root/.m2'
+        }
+    }
     stages {
         stage('编译') {
             steps {
@@ -15,11 +21,7 @@ pipeline {
         }
 
         stage('测试') {
-            agent {
-                docker 'maven:3-alpine'
-                //args 是指定 docker run 的所有指令
-                args '-v /var/jenkins_home/maven/.m2:/root/.m2'
-            }
+
             steps {
                 echo 'Hello, Maven'
                 sh 'mvn --version'
