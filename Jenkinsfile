@@ -2,9 +2,7 @@
 //file:noinspection SpellCheckingInspection
 pipeline {
 
-    agent any
     stages {
-
         stage('编译') {
             steps {
                 echo '编译'
@@ -25,6 +23,7 @@ pipeline {
             steps {
                 echo 'Hello, Maven'
                 sh 'mvn --version'
+
             }
         }
         stage('打包') {
