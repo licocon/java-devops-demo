@@ -1,21 +1,49 @@
+//file:noinspection GrUnresolvedAccess
+//file:noinspection SpellCheckingInspection
 pipeline {
-    agent none
+
+    agent any
     stages {
-//        stage('Example Build') {
-//            agent {
-//                docker 'maven:3-alpine'
-//                args '-v /var/jenkins_home/maven/.m2:/root/.m2'
-//            }
-//            steps { echo 'Hello, Maven' sh 'mvn --version' }
-//        }
-        stage('Example Test') {
+
+        stage('编译') {
+            steps {
+                echo '编译'
+                sh ' pwd & ls -alh'
+                sh 'printenv'
+                sh 'git --version'
+                sh 'java -version'
+            }
+
+        }
+
+        stage('测试') {
             agent {
-                docker 'openjdk:8-jre'
+                docker 'maven:3-alpine'
+                //args 是指定 docker run 的所有指令
+                args '-v /var/jenkins_home/maven/.m2:/root/.m2'
             }
             steps {
-                echo 'Hello, JDK'
-
+                echo 'Hello, Maven'
+                sh 'mvn --version'
             }
         }
+        stage('打包') {
+            steps {
+                echo '打包'
+            }
+
+        }
+
+        stage('部署') {
+
+            steps {
+                echo '部署'
+            }
+
+        }
+
+
     }
+
+
 }
