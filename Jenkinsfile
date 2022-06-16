@@ -1,7 +1,7 @@
 //file:noinspection GrUnresolvedAccess
 //file:noinspection SpellCheckingInspection
 pipeline {
-
+    agent none
     stages {
         stage('编译') {
             steps {
