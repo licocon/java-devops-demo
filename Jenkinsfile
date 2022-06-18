@@ -2,11 +2,11 @@
 //file:noinspection GrUnresolvedAccess
 //file:noinspection GroovyAssignabilityCheck
 pipeline {
-    agent none
+    agent {
+        docker { image 'maven:latest' }
+    }
     stages {
-        agent {
-            docker { image 'maven:latest' }
-        }
+
         stage('Build') {
             steps {
                 sh 'pwd && ls -lah'
