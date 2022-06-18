@@ -1,12 +1,12 @@
+//noinspection GrUnresolvedAccess
+//file:noinspection GrUnresolvedAccess
+//file:noinspection GroovyAssignabilityCheck
 pipeline {
-    agent {
-        docker {
-            image 'maven:latest'
-            args '-v $HOME/.m2:/root/.m2'
-        }
-
-    }
+    agent none
     stages {
+        agent {
+            docker { image 'maven:latest' }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -v'
